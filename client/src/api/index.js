@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { io } from 'socket.io-client';
-import { newMessageSuccess } from '../store/slices/messagesSlice';
+import {
+  newMessageError,
+  newMessageSuccess,
+} from '../store/slices/messagesSlice';
 
 const axiosOptions = {
   baseURL: 'http://127.0.0.1:5000/api',
@@ -20,6 +23,6 @@ export const bringStoreToSocket = store => {
   });
 
   socket.on('NEW_MESSAGE_ERROR', error => {
-    console.log('error :>> ', error);
+    store.dispatch(newMessageError(error));
   });
 };

@@ -39,10 +39,14 @@ const messagesSlice = createSlice({
   initialState,
   reducers: {
     newMessageSuccess: (state, { payload }) => {
+      state.error = null;
       if (state.messages.length >= state.limit) {
         state.messages.splice(0, 1);
       }
       state.messages.push(payload);
+    },
+    newMessageError: (state, { payload }) => {
+      state.error = payload;
     },
   },
   extraReducers: builder => {
@@ -81,6 +85,6 @@ const messagesSlice = createSlice({
 
 const { reducer, actions } = messagesSlice;
 
-export const { newMessageSuccess } = actions;
+export const { newMessageSuccess, newMessageError } = actions;
 
 export default reducer;
