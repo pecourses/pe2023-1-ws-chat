@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './rootReducer';
-import { bringStoreToSocket } from '../api';
+import { ws } from '../api';
 
 const store = configureStore({ reducer: rootReducer });
 
-bringStoreToSocket(store);
+ws.bringStoreToSocket(store);
 
 export default store;
